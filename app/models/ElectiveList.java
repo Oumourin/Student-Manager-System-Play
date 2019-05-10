@@ -1,8 +1,8 @@
 package models;
 
-import org.hibernate.annotations.Entity;
 import play.db.jpa.Model;
 
+import javax.persistence.Entity;
 import java.sql.Date;
 
 @Entity
