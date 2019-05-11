@@ -56,4 +56,9 @@ public class ElectiveList extends Model {
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
+
+    @Override
+    public String toString(){
+        return "选课表";
+    }
 }

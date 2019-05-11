@@ -1,0 +1,19 @@
+Admin(admin):
+  workId:       1145141919
+  password:     1145141919
+
+Teacher(teacher):
+  workId:       39393939
+  password:     39393939
+  teacherName:  田所浩二
+
+Student(student):
+  stuId:        1919810
+  password:     1919810
+  stuName:      远野
+  GPA:          1.919
+  classId:      810
+
+Class(class):
+  classId:      810
+  stuCount:     114

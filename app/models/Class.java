@@ -37,4 +37,9 @@ public class Class extends Model {
     public void setStuCount(int stuCount) {
         this.stuCount = stuCount;
     }
+
+    @Override
+    public String toString(){
+        return "班级";
+    }
 }

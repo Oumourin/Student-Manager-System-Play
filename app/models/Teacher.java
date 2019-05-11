@@ -1,5 +1,8 @@
 package models;
 
+import net.sf.oval.constraint.MaxSize;
+import net.sf.oval.constraint.MinSize;
+import play.data.validation.Password;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
@@ -9,6 +12,8 @@ import javax.persistence.Id;
 public class Teacher extends Model {
     @Id
     private String workId;
+
+    @Password
     private String password;
     private String teacherName;
 
@@ -40,5 +45,14 @@ public class Teacher extends Model {
 
     public String getTeacherName() {
         return teacherName;
+    }
+
+    public String toString(){
+        return "教师";
+    }
+
+    public static Teacher checkTeacher(String workId, String password)
+    {
+        return Teacher.find("byWorkIdAndPassword", workId, password).first();
     }
 }

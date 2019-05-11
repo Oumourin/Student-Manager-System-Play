@@ -51,4 +51,9 @@ public class CostList extends Model {
     public void setPay(Boolean pay) {
         isPay = pay;
     }
+
+    @Override
+    public String toString(){
+        return "费用表";
+    }
 }

@@ -40,4 +40,8 @@ public class ScoreList extends Model {
     public void setScore(Double score) {
         this.score = score;
     }
+
+    public String toString(){
+        return "成绩表";
+    }
 }

@@ -1,4 +1,18 @@
-#{extends 'main.html' /}
-#{set title:'Home' /}
+<head>
+    学生管理系统
+</head>
+<body>
+<div>
+    #{if isConnected}
+        <a href="@{controllers.Secure.logout()}">登出系统</a>
+        <div>
+        </div>
+    #{/if}
+    #{else }
+    <div>
+        <a href="@{controllers.Secure.login()}">登录系统</a>
+    </div>
+    #{/else}
+</div>
 
-#{welcome /}
+</body>

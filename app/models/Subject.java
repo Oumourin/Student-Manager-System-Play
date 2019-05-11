@@ -42,4 +42,9 @@ public class Subject extends Model {
     public void setScorePoint(Double scorePoint) {
         this.scorePoint = scorePoint;
     }
+
+    @Override
+    public String toString(){
+        return "学科";
+    }
 }

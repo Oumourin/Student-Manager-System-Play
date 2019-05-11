@@ -1,5 +1,8 @@
 package models;
 
+import net.sf.oval.constraint.MaxSize;
+import net.sf.oval.constraint.MinSize;
+import play.data.validation.Password;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
@@ -10,6 +13,8 @@ public class Student extends Model {
 
     @Id
     private String stuId;
+
+    @Password
     private String password;
     private String stuName;
     private Double GPA;
@@ -62,5 +67,14 @@ public class Student extends Model {
 
     public void setClassId(String classId) {
         this.classId = classId;
+    }
+
+    @Override
+    public String toString(){
+        return "学生";
+    }
+
+    public static Student checkStudent(String stuId, String password){
+        return Student.find("byStuIdAndPassword", stuId, password).first();
     }
 }

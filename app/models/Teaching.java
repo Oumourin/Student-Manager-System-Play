@@ -29,4 +29,9 @@ public class Teaching extends Model {
     public void setWorkId(String workId) {
         this.workId = workId;
     }
+
+    @Override
+    public String toString(){
+        return "授课";
+    }
 }
