@@ -8,6 +8,7 @@ import play.db.jpa.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.List;
 
 @Entity
 public class Admin extends Model {
@@ -73,5 +74,30 @@ public class Admin extends Model {
         return "已经创建" + classId + "班学号";
     }
 
-    // public static String
+    // 查找未激活教师账户
+    public static List<Teacher> showUnactiveTeacher(){
+        List<Teacher> unactiveTeacherList = Teacher.find("byIsActive", false).fetch();
+        return unactiveTeacherList;
+    }
+
+    // 激活教师账户
+    public static void activeTeacher(String workId){
+        Teacher findTeacher = Teacher.find("byWork", workId).first();
+        findTeacher.setActive(true);
+        findTeacher.save();
+    }
+
+    // 学生管理
+
+    // 添加学生
+    public static void addStudent(String stuId, String password, String classId){
+        Student findStudent = Student.find("byStuId", stuId).first();
+        Class findClass = Class.find("byClassId", classId).first();
+        if (findStudent == null && findClass != null) {
+            Student newStudent = new Student(stuId, password, classId);
+            newStudent.save();
+        }
+    }
+
 }
+

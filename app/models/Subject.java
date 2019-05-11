@@ -1,9 +1,11 @@
 package models;
 
 import play.db.jpa.Model;
+import play.jobs.On;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Subject extends Model {
@@ -12,6 +14,7 @@ public class Subject extends Model {
     private String subjectId;
     private String subjectName;
     private Double scorePoint;
+
 
     public Subject(String subjectId, String subjectName, Double scorePoint) {
         this.subjectId = subjectId;

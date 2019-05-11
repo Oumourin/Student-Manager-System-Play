@@ -3,8 +3,8 @@ package models;
 //import org.bouncycastle.math.raw.Mod;
 import play.db.jpa.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Class extends Model {
@@ -12,6 +12,9 @@ public class Class extends Model {
     @Id
     private String classId;
     private int stuCount;
+
+    @OneToMany(mappedBy = "myClass", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Student> students;
 
     public Class(String classId) {
         this.classId = classId;
@@ -24,6 +27,10 @@ public class Class extends Model {
 
     public String getClassId() {
         return classId;
+    }
+
+    public List<Student> getStudents() {
+        return students;
     }
 
     public int getStuCount() {

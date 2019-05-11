@@ -4,6 +4,7 @@ import play.db.jpa.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class CostList extends Model {
@@ -12,6 +13,9 @@ public class CostList extends Model {
     @Id
     private String orderId;
     private Boolean isPay;
+
+    @ManyToOne
+    private Student stu;
 
     public CostList(String stuId, Double price, String orderId, Boolean isPay) {
         this.stuId = stuId;

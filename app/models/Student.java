@@ -1,12 +1,14 @@
 package models;
 
+import controllers.Security;
 import net.sf.oval.constraint.MaxSize;
 import net.sf.oval.constraint.MinSize;
 import play.data.validation.Password;
 import play.db.jpa.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Student extends Model {
@@ -19,6 +21,20 @@ public class Student extends Model {
     private String stuName;
     private Double GPA;
     private String classId;
+
+    @ManyToOne
+    private Class myClass;
+
+    @OneToMany(mappedBy = "stu", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<CostList> myCostList;
+
+    public Class getMyClass() {
+        return myClass;
+    }
+
+    public List<CostList> getMyCostList() {
+        return myCostList;
+    }
 
     // 默认构造器
     public Student(String stuId, String password, String classId) {
@@ -77,4 +93,44 @@ public class Student extends Model {
     public static Student checkStudent(String stuId, String password){
         return Student.find("byStuIdAndPassword", stuId, password).first();
     }
+
+    //  费用相关方法
+    // 列出未支付费用
+    public static List<CostList> listUnCost(){
+        List<CostList> unCostList = CostList.find("byIsPay", false).fetch();
+        return unCostList;
+    }
+
+    // 支付费用
+    public static void payCost(String orderId){
+        CostList myCost = CostList.find("byOrderId", orderId).first();
+        if(myCost != null){
+            myCost.setPay(true);
+            myCost.save();
+        }
+    }
+
+    // 课程相关方法
+    // 选课
+    public static void electiveSubject(String subjectId, String stuId){
+        Subject findSubject = Subject.find("bySubjectId", subjectId).first();
+        if (findSubject != null){
+            Teaching teaching = Teaching.find("bySubjectId", subjectId).first();
+            ElectiveList myElective = new ElectiveList(stuId, subjectId, teaching.getWorkId(), teaching.getStartUp());
+            myElective.save();
+        }
+    }
+
+    // 删除选课
+    public static void deletElective(String subjectId){
+        ElectiveList findElective = ElectiveList.find("bySubjectId", subjectId).first();
+        Date date = new Date();
+        if (findElective != null){
+            if (date.before(findElective.getStartDate())){
+                findElective.delete();
+            }
+        }
+    }
+
+
 }

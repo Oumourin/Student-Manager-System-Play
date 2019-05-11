@@ -17,10 +17,20 @@ public class Teacher extends Model {
     private String password;
     private String teacherName;
 
+    private boolean isActive;
+
     public Teacher(String workId, String password) {
         this.workId = workId;
         this.password = password;
         this.teacherName = "";
+        this.isActive = true;
+    }
+
+    public Teacher(String workId, String password, String teacherName){
+        this.workId = workId;
+        this.password = password;
+        this.teacherName = teacherName;
+        this.isActive = false;
     }
 
     public void setWorkId(String workId) {
@@ -47,6 +57,14 @@ public class Teacher extends Model {
         return teacherName;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     public String toString(){
         return "教师";
     }
@@ -55,4 +73,13 @@ public class Teacher extends Model {
     {
         return Teacher.find("byWorkIdAndPassword", workId, password).first();
     }
+
+    // 自我注册方法
+    public static void regTeacher(String workId, String password, String teacherName){
+        Teacher newTeacher = new Teacher(workId, password, teacherName);
+        newTeacher.save();
+    }
+
+    
+
 }
