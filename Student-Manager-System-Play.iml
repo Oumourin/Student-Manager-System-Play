@@ -11,8 +11,14 @@
                 <content url="file://C:\Users\��ï��\play-1.5.2\modules\docviewer">
             <sourceFolder url="file://C:/Users/��ï��/play-1.5.2/modules/docviewer/app" isTestSource="false" />
         </content>
+        <content url="file://C:\Users\王茂林\play-1.5.2\modules\crud">
+            <sourceFolder url="file://C:/Users/王茂林/play-1.5.2/modules/crud/app" isTestSource="false" />
+        </content>
         <content url="file://C:\Users\王茂林\play-1.5.2\modules\docviewer">
             <sourceFolder url="file://C:/Users/王茂林/play-1.5.2/modules/docviewer/app" isTestSource="false" />
+        </content>
+        <content url="file://C:\Users\王茂林\play-1.5.2\modules\secure">
+            <sourceFolder url="file://C:/Users/王茂林/play-1.5.2/modules/secure/app" isTestSource="false" />
         </content>
 
         <orderEntry type="inheritedJdk" />
