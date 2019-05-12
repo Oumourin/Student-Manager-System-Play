@@ -3,6 +3,7 @@ package models;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import java.sql.Date;
 
@@ -11,6 +12,17 @@ public class Teaching extends Model {
     private String subjectId;
     private String workId;
     private Date startUp;
+
+    @ManyToOne
+    private Teacher myTeaching;
+
+    public Teacher getMyTeaching() {
+        return myTeaching;
+    }
+
+    public void setMyTeaching(Teacher myTeaching) {
+        this.myTeaching = myTeaching;
+    }
 
     public void setStartUp(Date startUp) {
         this.startUp = startUp;

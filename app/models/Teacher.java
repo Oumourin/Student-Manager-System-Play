@@ -2,11 +2,12 @@ package models;
 
 import net.sf.oval.constraint.MaxSize;
 import net.sf.oval.constraint.MinSize;
+import net.sf.oval.constraint.Past;
 import play.data.validation.Password;
 import play.db.jpa.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Teacher extends Model {
@@ -18,6 +19,12 @@ public class Teacher extends Model {
     private String teacherName;
 
     private boolean isActive;
+
+    @OneToMany(mappedBy = "myTeaching", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Teaching> teachings;
+
+    @OneToMany(mappedBy = "myTeacher", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Student> students;
 
     public Teacher(String workId, String password) {
         this.workId = workId;
@@ -80,6 +87,18 @@ public class Teacher extends Model {
         newTeacher.save();
     }
 
-    
+    // 打分方法
+    public static void setScore(String stuId, String subjectId, Double
+            score){
+        Student student = Student.find("byStuId", stuId).first();
+        Subject subject = Subject.find("bySubjectId", subjectId).first();
+        if ( student != null ){
+            if (subject != null)
+            {
+                ScoreList newScoreList = new ScoreList(stuId, subjectId, score);
+                newScoreList.save();
+            }
+        }
+    }
 
 }

@@ -7,6 +7,7 @@ import play.data.validation.Password;
 import play.db.jpa.Model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,11 +26,41 @@ public class Student extends Model {
     @ManyToOne
     private Class myClass;
 
+    @ManyToOne
+    private Teacher myTeacher;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ScoreList> myScoreList;
+
     @OneToMany(mappedBy = "stu", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<CostList> myCostList;
 
     public Class getMyClass() {
         return myClass;
+    }
+
+    public Teacher getMyTeacher() {
+        return myTeacher;
+    }
+
+    public void setMyTeacher(Teacher myTeacher) {
+        this.myTeacher = myTeacher;
+    }
+
+    public void setMyClass(Class myClass) {
+        this.myClass = myClass;
+    }
+
+    public void setMyScoreList(List<ScoreList> myScoreList) {
+        this.myScoreList = myScoreList;
+    }
+
+    public void setMyCostList(List<CostList> myCostList) {
+        this.myCostList = myCostList;
+    }
+
+    public List<ScoreList> getMyScoreList() {
+        return myScoreList;
     }
 
     public List<CostList> getMyCostList() {
@@ -130,6 +161,16 @@ public class Student extends Model {
                 findElective.delete();
             }
         }
+    }
+
+    // 打印成绩单
+    public List<String> findMyScore(){
+        List<String> myList = new ArrayList<>();
+        for (int i=0; i<myScoreList.size(); i++){
+            String myScore = myScoreList.get(i).getStuId() +"  "+ myScoreList.get(i).getScore();
+            myList.add(myScore);
+        }
+        return myList;
     }
 
 

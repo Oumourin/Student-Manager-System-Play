@@ -4,12 +4,16 @@ package models;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class ScoreList extends Model {
     private String stuId;
     private String subjectId;
     private Double score;
+
+    @ManyToOne
+    private Student student;
 
     public ScoreList(String stuId, String subjectId, Double score) {
         this.stuId = stuId;
@@ -39,6 +43,10 @@ public class ScoreList extends Model {
 
     public void setScore(Double score) {
         this.score = score;
+    }
+
+    public Student getStudent() {
+        return student;
     }
 
     public String toString(){
