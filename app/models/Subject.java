@@ -48,6 +48,6 @@ public class Subject extends Model {
 
     @Override
     public String toString(){
-        return "学科";
+        return subjectId;
     }
 }

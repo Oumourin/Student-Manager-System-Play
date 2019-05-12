@@ -47,6 +47,6 @@ public class Class extends Model {
 
     @Override
     public String toString(){
-        return "班级";
+        return classId;
     }
 }

@@ -59,6 +59,6 @@ public class ElectiveList extends Model {
 
     @Override
     public String toString(){
-        return "选课表";
+        return stuId;
     }
 }

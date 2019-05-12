@@ -61,6 +61,6 @@ public class Teaching extends Model {
 
     @Override
     public String toString(){
-        return "授课";
+        return subjectId;
     }
 }

@@ -81,10 +81,11 @@ public class Admin extends Model {
     }
 
     // 激活教师账户
-    public static void activeTeacher(String workId){
-        Teacher findTeacher = Teacher.find("byWork", workId).first();
+    public static String activeTeacher(String workId){
+        Teacher findTeacher = Teacher.find("byWorkId", workId).first();
         findTeacher.setActive(true);
         findTeacher.save();
+        return "激活成功";
     }
 
     // 学生管理

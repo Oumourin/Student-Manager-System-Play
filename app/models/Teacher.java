@@ -73,7 +73,7 @@ public class Teacher extends Model {
     }
 
     public String toString(){
-        return "教师";
+        return workId;
     }
 
     public static Teacher checkTeacher(String workId, String password)

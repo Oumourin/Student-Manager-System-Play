@@ -58,6 +58,6 @@ public class CostList extends Model {
 
     @Override
     public String toString(){
-        return "费用表";
+        return stuId;
     }
 }

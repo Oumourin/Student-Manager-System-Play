@@ -14,7 +14,6 @@ public class Application extends Controller {
 
     public static void index() {
         boolean isConnected;
-        String id;
         if(Security.isConnected())
         {
             isConnected = true;
@@ -25,5 +24,15 @@ public class Application extends Controller {
         render(isConnected);
     }
 
-    
+    @Check("Admin")
+    public static void initClass(){
+       String result = Admin.initStuId("1919", 20);
+       render("Application/Result.html",result);
+    }
+
+    @Check("Admin")
+    public static void activeTeacher(){
+        String result = Admin.activeTeacher("114514");
+        render("Application/Result.html",result);
+    }
 }

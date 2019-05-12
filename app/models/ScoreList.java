@@ -50,6 +50,6 @@ public class ScoreList extends Model {
     }
 
     public String toString(){
-        return "成绩表";
+        return stuId;
     }
 }

@@ -118,7 +118,7 @@ public class Student extends Model {
 
     @Override
     public String toString(){
-        return "学生";
+        return stuId;
     }
 
     public static Student checkStudent(String stuId, String password){
